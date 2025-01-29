@@ -1,0 +1,12 @@
+llama-index
+llama-index-llms-azure-openai
+python-dotenv
+pymupdf==1.23.22
+transformers
+tiktoken
+matplotlib
+requests
+numpy
+pandas
+openai
+streamlit
