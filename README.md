@@ -1,43 +1,38 @@
-📌 Proyecto de Búsqueda Inteligente con Agente Conversacional
+# 📌 Proyecto de Búsqueda Inteligente con Agente Conversacional
 
 Este proyecto permite a los usuarios cargar archivos PDF, extraer su contenido, generar embeddings y realizar consultas utilizando un agente conversacional basado en Azure OpenAI y búsqueda en Bing.
 
-📂 Estructura del Proyecto
+## 📂 Estructura del Proyecto
 
-main.py: Aplicación principal en Streamlit.
+- `main.py`: Aplicación principal en Streamlit.
+- `env_loader.py`: Carga de variables de entorno.
+- `bing_search.py`: Realiza búsquedas en Bing.
+- `explore_pdf.py`: Procesa PDFs y extrae su contenido.
+- `search_embedding.py`: Genera embeddings y busca similitudes.
+- `search_with_azure.py`: Coordina búsquedas con embeddings y Bing.
+- `nuevo_agente.py`: Configura y ejecuta el agente.
+- `requirements.txt`: Dependencias necesarias.
 
-env_loader.py: Carga de variables de entorno.
+## 🚀 Instalación y Ejecución
 
-bing_search.py: Realiza búsquedas en Bing.
+### 1️⃣ Requisitos Previos
 
-explore_pdf.py: Procesa PDFs y extrae su contenido.
+- Python 3.8 o superior
+- Claves API para Azure OpenAI y Bing Search
 
-search_embedding.py: Genera embeddings y busca similitudes.
-
-search_with_azure.py: Coordina búsquedas con embeddings y Bing.
-
-nuevo_agente.py: Configura y ejecuta el agente.
-
-requirements.txt: Dependencias necesarias.
-
-🚀 Instalación y Ejecución
-
-1️⃣ Requisitos Previos
-
-Python 3.8 o superior
-
-Claves API para Azure OpenAI y Bing Search
-
-2️⃣ Instalación de Dependencias
+### 2️⃣ Instalación de Dependencias
 
 Ejecuta el siguiente comando en la terminal:
 
+```sh
 pip install -r requirements.txt
+```
 
-3️⃣ Configuración de Variables de Entorno
+### 3️⃣ Configuración de Variables de Entorno
 
-Crea un archivo .env con el siguiente contenido y completa con tus credenciales:
+Crea un archivo `.env` con el siguiente contenido y completa con tus credenciales:
 
+```
 AZURE_OPENAI_ENDPOINT=...  # URL del endpoint de Azure OpenAI
 AZURE_OPENAI_API_KEY=...  # Clave API de Azure OpenAI
 AZURE_OPENAI_DEPLOYMENT_NAME=...  # Nombre del despliegue de OpenAI
@@ -45,39 +40,34 @@ AZURE_OPENAI_ENDPOINT_EMBEDINGS=...  # URL del endpoint de embeddings de OpenAI
 AZURE_OPENAI_EMBEDINGS_API_KEY=...  # Clave API de embeddings de OpenAI
 AZURE_OPENAI_EMBEDINGS_DEPLOYMENT_NAME=...  # Nombre del despliegue de embeddings de OpenAI
 BING_SEARCH_API_KEY=...  # Clave API para realizar búsquedas en Bing
+```
 
-4️⃣ Ejecución de la Aplicación
+### 4️⃣ Ejecución de la Aplicación
 
 Ejecuta la aplicación Streamlit:
 
+```sh
 streamlit run main.py
+```
 
-🔄 Flujo de Interacción
+## 🔄 Flujo de Interacción
 
-Carga de PDF: El usuario sube archivos PDF mediante la interfaz de Streamlit.
+1. **Carga de PDF:** El usuario sube archivos PDF mediante la interfaz de Streamlit.
+2. **Procesamiento del PDF:**
+   - Se extrae el texto de cada página.
+   - Se generan embeddings mediante Azure OpenAI.
+   - Se almacenan en un JSON para futuras búsquedas.
+3. **Creación del Agente:** Se instancia un agente de OpenAI configurado para interactuar con los embeddings y la búsqueda en Bing.
+4. **Consulta del Usuario:**
+   - El usuario ingresa una pregunta en el chat de Streamlit.
+   - El agente busca primero en los embeddings.
+   - Si la similitud es baja, realiza una búsqueda en Bing.
+   - Retorna la mejor respuesta encontrada.
 
-Procesamiento del PDF:
+## 📌 Notas Adicionales
 
-Se extrae el texto de cada página.
+- El agente usa `cosine similarity` para determinar la relevancia de la información encontrada.
+- Si la similitud es inferior a 0.4, se considera irrelevante y se recurre a Bing.
 
-Se generan embeddings mediante Azure OpenAI.
+¡Listo para explorar y consultar documentos con inteligencia artificial! 🚀
 
-Se almacenan en un JSON para futuras búsquedas.
-
-Creación del Agente: Se instancia un agente de OpenAI configurado para interactuar con los embeddings y la búsqueda en Bing.
-
-Consulta del Usuario:
-
-El usuario ingresa una pregunta en el chat de Streamlit.
-
-El agente busca primero en los embeddings.
-
-Si la similitud es baja, realiza una búsqueda en Bing.
-
-Retorna la mejor respuesta encontrada.
-
-📌 Notas Adicionales
-
-El agente usa cosine similarity para determinar la relevancia de la información encontrada.
-
-Si la similitud es inferior a 0.4, se considera irrelevante y se recurre a Bing.
